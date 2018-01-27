@@ -30,6 +30,7 @@ type EchoApplication struct {
 	OnIntent           func(*EchoRequest, *EchoResponse)
 	OnSessionEnded     func(*EchoRequest, *EchoResponse)
 	OnAudioPlayerState func(*EchoRequest, *EchoResponse)
+	OnException        func(*EchoRequest, *EchoResponse)
 }
 
 type StdApplication struct {
@@ -82,6 +83,10 @@ func Init(apps map[string]interface{}, router *mux.Router) {
 				} else if echoReq.GetRequestType() == "SessionEndedRequest" {
 					if app.OnSessionEnded != nil {
 						app.OnSessionEnded(echoReq, echoResp)
+					}
+				} else if echoReq.GetRequestType() == "System.ExceptionEncountered" {
+					if app.OnException != nil {
+						app.OnException(echoReq, echoResp)
 					}
 				} else if strings.HasPrefix(echoReq.GetRequestType(), "AudioPlayer.") {
 					if app.OnAudioPlayerState != nil {
