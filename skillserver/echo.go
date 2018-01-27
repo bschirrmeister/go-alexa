@@ -228,6 +228,7 @@ type EchoRespBody struct {
 	OutputSpeech     *EchoRespPayload `json:"outputSpeech,omitempty"`
 	Card             *EchoRespPayload `json:"card,omitempty"`
 	Reprompt         *EchoReprompt    `json:"reprompt,omitempty"` // Pointer so it's dropped if empty in JSON response.
+        Directives       []interface{}    `json:"directives,omitempty"`
 	ShouldEndSession bool             `json:"shouldEndSession"`
 }
 
@@ -247,4 +248,22 @@ type EchoRespPayload struct {
 	SSML    string        `json:"ssml,omitempty"`
 	Content string        `json:"content,omitempty"`
 	Image   EchoRespImage `json:"image,omitempty"`
+}
+
+type EchoDirective struct {
+        Type          string         `json:"type,omitempty"`
+        PlayBehavior  string         `json:"playBehavior,omitempty"`
+        ClearBehavior string         `json:"clearBehavior,omitempty"`
+        AudioItem     *EchoAudioItem `json:"audioItem,omitempty"`
+}
+
+type EchoAudioItem struct {
+        Stream EchoStream `json:"stream,omitempty"`
+}
+
+type EchoStream struct {
+        Url                   string `json:"url,omitempty"`
+        Token                 string `json:"token,omitempty"`
+        ExpectedPreviousToken string `json:"expectedPreviousToken,omitempty"`
+        OffsetInMilliseconds  int64  `json:"offsetInMilliseconds"`
 }
