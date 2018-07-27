@@ -204,6 +204,7 @@ type EchoReqBody struct {
 	Timestamp string     `json:"timestamp"`
 	Intent    EchoIntent `json:"intent,omitempty"`
 	Reason    string     `json:"reason,omitempty"`
+	Token     string     `json:"token,omitempty"`
 }
 
 type EchoIntent struct {
