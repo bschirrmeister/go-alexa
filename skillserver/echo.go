@@ -259,7 +259,7 @@ type EchoDirective struct {
 }
 
 type EchoAudioItem struct {
-        Stream EchoStream `json:"stream,omitempty"`,
+        Stream EchoStream `json:"stream,omitempty"`
         Metadata *AudioItemMetadata `json:"metadata,omitempty"`
 }
 
