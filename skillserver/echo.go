@@ -275,6 +275,4 @@ type EchoStream struct {
 type AudioItemMetadata struct {
 	Title           string              `json:"title,omitempty"`
 	Subtitle        string              `json:"subtitle,omitempty"`
-	Art             *DisplayImageObject `json:"art,omitempty"`
-	BackgroundImage *DisplayImageObject `json:"backgroundImage,omitempty"`
 }
