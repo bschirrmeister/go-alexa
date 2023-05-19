@@ -259,7 +259,8 @@ type EchoDirective struct {
 }
 
 type EchoAudioItem struct {
-        Stream EchoStream `json:"stream,omitempty"`
+        Stream EchoStream `json:"stream,omitempty"`,
+        Metadata *AudioItemMetadata `json:"metadata,omitempty"`
 }
 
 type EchoStream struct {
@@ -267,4 +268,13 @@ type EchoStream struct {
         Token                 string `json:"token,omitempty"`
         ExpectedPreviousToken string `json:"expectedPreviousToken,omitempty"`
         OffsetInMilliseconds  int64  `json:"offsetInMilliseconds"`
+}
+
+
+
+type AudioItemMetadata struct {
+	Title           string              `json:"title,omitempty"`
+	Subtitle        string              `json:"subtitle,omitempty"`
+	Art             *DisplayImageObject `json:"art,omitempty"`
+	BackgroundImage *DisplayImageObject `json:"backgroundImage,omitempty"`
 }
