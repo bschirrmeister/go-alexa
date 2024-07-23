@@ -92,6 +92,10 @@ func Init(apps map[string]interface{}, router *mux.Router) {
 					if app.OnAudioPlayerState != nil {
 						app.OnAudioPlayerState(echoReq, echoResp)
 					}
+				} else if strings.HasPrefix(echoReq.GetRequestType(), "PlaybackController.") {
+					if app.OnPlaybackController != nil {
+						app.OnPlaybackController(echoReq, echoResp)
+					}
 				} else {
 					http.Error(w, "Invalid request.", http.StatusBadRequest)
 				}
