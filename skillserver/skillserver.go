@@ -30,6 +30,7 @@ type EchoApplication struct {
 	OnIntent           func(*EchoRequest, *EchoResponse)
 	OnSessionEnded     func(*EchoRequest, *EchoResponse)
 	OnAudioPlayerState func(*EchoRequest, *EchoResponse)
+	OnPlaybackController func(*EchoRequest, *EchoResponse)
 	OnException        func(*EchoRequest, *EchoResponse)
 }
 
