@@ -30,6 +30,7 @@ type EchoApplication struct {
 	OnIntent           func(*EchoRequest, *EchoResponse)
 	OnSessionEnded     func(*EchoRequest, *EchoResponse)
 	OnAudioPlayerState func(*EchoRequest, *EchoResponse)
+	OnPlaybackController func(*EchoRequest, *EchoResponse)
 	OnException        func(*EchoRequest, *EchoResponse)
 }
 
@@ -91,6 +92,10 @@ func Init(apps map[string]interface{}, router *mux.Router) {
 				} else if strings.HasPrefix(echoReq.GetRequestType(), "AudioPlayer.") {
 					if app.OnAudioPlayerState != nil {
 						app.OnAudioPlayerState(echoReq, echoResp)
+					}
+				} else if strings.HasPrefix(echoReq.GetRequestType(), "PlaybackController.") {
+					if app.OnPlaybackController != nil {
+						app.OnPlaybackController(echoReq, echoResp)
 					}
 				} else {
 					http.Error(w, "Invalid request.", http.StatusBadRequest)
